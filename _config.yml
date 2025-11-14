@@ -1,0 +1,36 @@
+title: "AI 专业名词百科"
+description: "AI/LLM/RAG/Agent 等术语的中文百科索引与详情"
+language: zh-CN
+
+url: "https://onewesong.github.io"
+baseurl: "/ai-wiki"
+
+permalink: /:categories/:title/
+
+collections:
+  terms:
+    output: true
+    permalink: /terms/:name/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: "terms"
+    values:
+      layout: term
+      sitemap: true
+
+sitemap: true
+
+exclude:
+  - README_local.md
+  - node_modules
+  - vendor
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+
