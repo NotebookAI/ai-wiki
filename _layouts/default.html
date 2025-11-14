@@ -34,6 +34,17 @@
       </main>
     </div>
 
+    <!-- Modal for term details -->
+    <div id="term-modal" class="term-modal" style="display: none;">
+      <div class="term-modal-overlay"></div>
+      <div class="term-modal-content">
+        <button class="term-modal-close" aria-label="关闭">×</button>
+        <div class="term-modal-body" id="term-modal-body">
+          <div class="term-modal-loading">加载中...</div>
+        </div>
+      </div>
+    </div>
+
     <script src="{{ '/assets/app.js' | relative_url }}" defer></script>
   </body>
 </html>

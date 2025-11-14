@@ -104,3 +104,24 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 /* giscus 容器底色 */
 #giscus-container { margin-top: 6px; padding: 8px 6px 4px; border-radius: 10px; border: 1px solid rgba(30,64,175,0.7); background: rgba(15,23,42,0.8); }
 
+/* Modal 样式 */
+.term-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.term-modal.show { display: flex; }
+.term-modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); }
+.term-modal-content { position: relative; background: rgba(15,23,42,0.98); border-radius: var(--radius-lg); border: 1px solid rgba(148,163,184,0.4); box-shadow: 0 24px 60px rgba(0,0,0,0.9); max-width: 800px; width: 100%; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; z-index: 1001; }
+.term-modal-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(148,163,184,0.5); background: rgba(15,23,42,0.9); color: var(--text-main); font-size: 24px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 150ms, border-color 150ms; z-index: 1002; }
+.term-modal-close:hover { background: rgba(31,41,55,0.9); border-color: rgba(148,163,184,0.8); }
+.term-modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+.term-modal-loading { text-align: center; padding: 40px; color: var(--text-soft); }
+.term-modal-body .term-detail { max-width: 100%; }
+.term-modal-body .term-detail-header { margin-bottom: 16px; }
+.term-modal-body .term-detail-body { margin-bottom: 16px; }
+.term-modal-body .term-detail-footer { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(148,163,184,0.2); }
+.term-modal-body .term-detail-footer h3 { font-size: 14px; margin: 0 0 8px; color: var(--text-main); }
+.term-modal-body .term-detail-footer p { font-size: 11px; color: var(--text-soft); margin: 0 0 12px; }
+@media (max-width: 768px) {
+  .term-modal { padding: 10px; }
+  .term-modal-content { max-height: 95vh; }
+  .term-modal-body { padding: 16px; }
+}
+
