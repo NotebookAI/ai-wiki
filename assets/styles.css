@@ -76,7 +76,7 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 
 .term-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
 .term-card { background: radial-gradient(circle at top left, rgba(148,163,184,0.1), rgba(15,23,42,1)); border-radius: var(--radius-md); padding: 8px 9px 9px; border: 1px solid rgba(31,41,55,1); position: relative; overflow: hidden; transition: transform 120ms ease-out, box-shadow 120ms ease-out, border-color 120ms ease-out, background 120ms ease-out; cursor: pointer; display: block; color: inherit; text-decoration: none; }
-.term-card:hover { transform: translateY(-2px) translateZ(0); box-shadow: 0 16px 40px rgba(15,23,42,0.9); border-color: rgba(148,163,184,0.9); background: radial-gradient(circle at top left, rgba(34,197,94,0.18), rgba(15,23,42,1)); }
+.term-card:hover { transform: translateY(-2px) translateZ(0); box-shadow: 0 16px 40px rgba(15,23,42,0.9); border-color: rgba(148,163,184,0.9); background: radial-gradient(circle at top left, rgba(34,197,94,0.18), rgba(15,23,42,1)); text-decoration: none; }
 .term-header { display: flex; justify-content: space-between; align-items: baseline; gap: 4px; margin-bottom: 4px; }
 .term-name { font-size: 13px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 .term-name .en { font-size: 11px; color: var(--text-soft); font-weight: 500; }
