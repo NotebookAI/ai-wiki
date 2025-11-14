@@ -2,11 +2,8 @@ title: "AI 专业名词百科"
 description: "AI/LLM/RAG/Agent 等术语的中文百科索引与详情"
 language: zh-CN
 
-# 生产环境建议设置为你的域名与仓库路径
-# 比如：url: "https://onewesong.github.io"
-#       baseurl: "/ai-wiki"
-url: ""
-baseurl: ""
+url: "https://onewesong.github.io"
+baseurl: "/ai-wiki"
 
 permalink: /:categories/:title/
 
@@ -27,7 +24,6 @@ defaults:
       layout: term
       sitemap: true
 
-paginate: 0
 sitemap: true
 
 exclude:
