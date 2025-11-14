@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+<aside class="sidebar">
+  <div class="sidebar-title">
+    返回
+    <span>浏览全部术语</span>
+  </div>
+  <div class="category-list">
+    <a class="category-chip" href="{{ '/' | relative_url }}"><span>← 返回首页</span></a>
+  </div>
+</aside>
+
+<section class="main">
+  <article class="term-detail">
+    <header class="term-detail-header">
+      <h2 class="term-detail-title">
+        <span class="zh">{{ page.title }}</span>
+        {% if page.title_en %}<span class="en">{{ page.title_en }}</span>{% endif %}
+      </h2>
+      <p class="term-detail-brief">{{ page.brief }}</p>
+      {% if page.chips %}
+      <div class="modal-chips">
+        {% for c in page.chips %}<span class="modal-chip">{{ c }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      <div class="term-meta">
+        {% if page.category %}<span class="meta-item">分类：{{ page.category }}</span>{% endif %}
+        {% if page.type %}<span class="meta-item">类型：{{ page.type }}</span>{% endif %}
+        {% if page.aliases %}<span class="meta-item">别名：{{ page.aliases | join: ', ' }}</span>{% endif %}
+      </div>
+    </header>
+
+    <div class="term-detail-body">
+      {{ content }}
+    </div>
+
+    <footer class="term-detail-footer">
+      <h3>💬 用户评论与个人笔记</h3>
+      <p>评论数据保存在 GitHub Discussions：可以记录你对本术语的理解、踩坑与补充链接。</p>
+      <div id="giscus-container"></div>
+    </footer>
+  </article>
+</section>
+
+<script>
+  (function() {
+    const container = document.getElementById('giscus-container');
+    if (!container) return;
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.setAttribute('data-repo', 'onewesong/ai-wiki');
+    s.setAttribute('data-repo-id', 'R_kgDOQVaIew');
+    s.setAttribute('data-category', 'Show and tell');
+    s.setAttribute('data-category-id', 'DIC_kwDOQVaIe84Cxxql');
+    s.setAttribute('data-mapping', 'pathname');
+    s.setAttribute('data-strict', '0');
+    s.setAttribute('data-reactions-enabled', '1');
+    s.setAttribute('data-emit-metadata', '0');
+    s.setAttribute('data-input-position', 'bottom');
+    s.setAttribute('data-theme', 'preferred_color_scheme');
+    s.setAttribute('data-lang', 'zh-CN');
+    s.crossOrigin = 'anonymous';
+    s.async = true;
+    container.appendChild(s);
+  })();
+</script>
+

@@ -1,0 +1,25 @@
+<a class="term-card"
+   href="{{ include.url | relative_url }}"
+   data-id="{{ include.id }}"
+   data-category="{{ include.category }}"
+   data-type="{{ include.type }}"
+   data-keywords="{{ include.keywords | join: ' ' }}">
+  <div class="term-header">
+    <div class="term-name">
+      {{ include.title_zh }}
+      {% if include.title_en %}<span class="en">{{ include.title_en }}</span>{% endif %}
+    </div>
+    <div class="term-tag {{ include.type | default: 'core' }}">{{ include.type | default: '概念' }}</div>
+  </div>
+  <div class="term-meta">
+    {% if include.meta and include.meta.size > 0 %}
+      {% for m in include.meta %}<span class="meta-item">{{ m }}</span>{% endfor %}
+    {% endif %}
+  </div>
+  <p class="term-desc">{{ include.brief }}</p>
+  <div class="term-foot">
+    <span class="term-category-label">分类：{{ include.category }}</span>
+    {% if include.aliases %}<span class="term-alias">别名：{{ include.aliases | join: ' / ' }}</span>{% endif %}
+  </div>
+</a>
+
