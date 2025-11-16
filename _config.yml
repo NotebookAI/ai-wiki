@@ -26,6 +26,10 @@ defaults:
 
 sitemap: true
 
+# 配置 Google Analytics（GA4）测量 ID（例如：G-XXXXXXXXXX）。
+# 仅在生产环境（JEKYLL_ENV=production）且该字段非空时注入脚本。
+google_analytics: "G-J6TXQLZKP0"
+
 exclude:
   - README_local.md
   - node_modules
@@ -33,4 +37,3 @@ exclude:
   - Gemfile.lock
   - package.json
   - package-lock.json
-
