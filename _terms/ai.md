@@ -35,6 +35,18 @@ meta: [大概念, 包含 ML / DL / LLM 等]
 - **数据与算力资源**：高质量数据构建、隐私保护与算力分配影响模型能力上限。
 - **社会影响**：涉及就业变迁、知识产权、偏见治理等，需要跨学科协同制定标准。
 
+### 评测与治理
+- **模型评测指标**：
+  - [MMLU](https://arxiv.org/abs/2009.03300) 以 57 个学科、上千道题检验通识推理，常被 GPT-4、Gemini 等技术报告用来衡量通用性。
+  - [Safety Bench](https://arxiv.org/abs/2311.17663) 聚焦危险指令响应率，用于发现越权、攻击类风险场景。
+  - [BLEU](https://aclanthology.org/P02-1040/) 是机器翻译与多语言生成的经典自动评分指标，衡量输出与参考文本的 n-gram 重合度。
+  - **Toxicity Rate** 借助 Perspective API 等工具统计有害语言占比，是内容审核与品牌安全评估的常见指标。
+- **对齐与治理框架**：
+  - **RLHF（Human Feedback）**：如 OpenAI、Meta Llama 采用「预训练 + 奖励模型 + 近端策略优化」流程，缓解幻觉、冒犯性回答等交互风险。
+  - **Constitutional AI**：Anthropic 在 [Claude](https://www.anthropic.com/index/claude-3) 训练中让模型自评并遵循公开的“宪法”条款，可减少越权指令执行、隐私泄露等问题。
+  - **OECD / GPAI 原则**：强调以人为本、透明可解释与可追责，指导欧盟《AI 法案》、新加坡 AI Verify 等标准化测试，帮助监管歧视、滥用与跨境数据风险。
+  - **行业治理案例**：如微软 Responsible AI Standard、国内《生成式人工智能服务管理暂行办法》要求记录测试基准与红队结果，实现全流程问责。
+
 ### 参考资料
 - [Stuart Russell & Peter Norvig. *Artificial Intelligence: A Modern Approach* (4th Edition).](https://aima.cs.berkeley.edu/)（经典教材，系统阐述 AI 基础与应用）
 - [Michael Jordan. "Artificial Intelligence — The Revolution Hasn’t Happened Yet." *Harvard Data Science Review* (2019).](https://hdsr.mitpress.mit.edu/pub/wot7mkc1)（讨论 AI 与统计、数据科学的关系）
