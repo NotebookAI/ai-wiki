@@ -30,26 +30,26 @@ layout: default
         {% if page.type %}<span class="meta-item">类型：{{ page.type }}</span>{% endif %}
         {% if page.aliases %}<span class="meta-item">别名：{{ page.aliases | join: ', ' }}</span>{% endif %}
       </div>
-      <div class="term-actions">
-        <button
-          class="contrib-btn secondary js-edit-term"
-          type="button"
-          data-term-id="{{ page.id }}"
-          data-term-file="{{ page.path | replace_first: '_terms/', '' }}"
-        >
-          ✏️ 在线编辑
-        </button>
-        <span class="term-actions-hint">打开 GitHub 界面，修改后直接生成 PR</span>
-      </div>
     </header>
 
     <div class="term-detail-body">
       {{ content }}
     </div>
+    <div class="term-actions">
+      <button
+        class="contrib-btn secondary js-edit-term"
+        type="button"
+        data-term-id="{{ page.id }}"
+        data-term-file="{{ page.path | replace_first: '_terms/', '' }}"
+      >
+        ✏️ 在线编辑
+      </button>
+      <span class="term-actions-hint">打开 GitHub 界面，修改后直接生成 PR</span>
+    </div>
 
     <footer class="term-detail-footer">
       <h3>💬 用户评论与个人笔记</h3>
-      <p>评论数据保存在 GitHub Discussions：可以记录你对本术语的理解、踩坑与补充链接。</p>
+      <!-- <p>评论数据保存在 GitHub Discussions：可以记录你对本术语的理解、踩坑与补充链接。</p> -->
       <div id="giscus-container"></div>
     </footer>
   </article>
