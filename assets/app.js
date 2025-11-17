@@ -6,10 +6,54 @@ document.addEventListener('DOMContentLoaded', () => {
   const visibleCountEl = document.getElementById('visible-count');
   const maxCountEl = document.getElementById('max-count');
   const noResultEl = document.getElementById('no-result');
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeToggleIcon = themeToggle ? themeToggle.querySelector('.theme-toggle-icon') : null;
+  const themeToggleLabel = themeToggle ? themeToggle.querySelector('.theme-toggle-label') : null;
 
-  if (!termGrid) return;
+  const THEME_KEY = 'aiwiki-theme';
 
-  const cards = Array.from(termGrid.querySelectorAll('.term-card'));
+  function applyTheme(theme, persist = false) {
+    const isLight = theme === 'light';
+    document.body.classList.toggle('light-theme', isLight);
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(isLight));
+      themeToggle.setAttribute('aria-label', isLight ? '切换为暗色主题' : '切换为亮色主题');
+    }
+    if (themeToggleIcon) {
+      themeToggleIcon.textContent = isLight ? '☀️' : '🌙';
+    }
+    if (themeToggleLabel) {
+      themeToggleLabel.textContent = isLight ? '亮色' : '暗色';
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(THEME_KEY, theme);
+      } catch (err) {
+        // ignore write errors
+      }
+    }
+  }
+
+  (function initTheme() {
+    let storedTheme = null;
+    try {
+      storedTheme = localStorage.getItem(THEME_KEY);
+    } catch (err) {
+      storedTheme = null;
+    }
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initialTheme = storedTheme || (prefersLight ? 'light' : 'dark');
+    applyTheme(initialTheme);
+  })();
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+      applyTheme(nextTheme, true);
+    });
+  }
+
+  const cards = termGrid ? Array.from(termGrid.querySelectorAll('.term-card')) : [];
   maxCountEl && (maxCountEl.textContent = String(cards.length));
 
   let currentCategory = 'all';
@@ -69,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       viewButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      if (!termGrid) return;
       const view = btn.getAttribute('data-view');
       if (view === 'compact') {
         termGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
