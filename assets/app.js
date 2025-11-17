@@ -9,6 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const themeToggleIcon = themeToggle ? themeToggle.querySelector('.theme-toggle-icon') : null;
   const themeToggleLabel = themeToggle ? themeToggle.querySelector('.theme-toggle-label') : null;
+  const bodyDataset = document.body ? document.body.dataset : {};
+  const repoOwner = bodyDataset.repoOwner || 'notebookai';
+  const repoName = bodyDataset.repoName || 'ai-wiki';
+  const repoBranch = bodyDataset.repoBranch || 'main';
+  const githubNewBase = `https://github.com/${repoOwner}/${repoName}/new/${repoBranch}/_terms`;
+  const githubRawBase = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${repoBranch}/_terms/`;
+  const githubEditBase = `https://github.com/${repoOwner}/${repoName}/edit/${repoBranch}/_terms/`;
+  const NEW_TERM_TEMPLATE = [
+    '---',
+    'id: your-id',
+    'title: 中文名',
+    'title_en: English Name',
+    'category: foundation',
+    'type: core',
+    'aliases: []',
+    'keywords: []',
+    'brief: 术语一句话简介',
+    'meta: []',
+    '---',
+    '',
+    '在此补充正文，支持 Markdown。',
+    ''
+  ].join('\n');
 
   const THEME_KEY = 'aiwiki-theme';
 
@@ -181,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (giscusContainer) {
             giscusScript = document.createElement('script');
             giscusScript.src = 'https://giscus.app/client.js';
-            giscusScript.setAttribute('data-repo', 'onewesong/ai-wiki');
+            giscusScript.setAttribute('data-repo', 'notebookai/ai-wiki');
             giscusScript.setAttribute('data-repo-id', 'R_kgDOQVaIew');
             giscusScript.setAttribute('data-category', 'Show and tell');
             giscusScript.setAttribute('data-category-id', 'DIC_kwDOQVaIe84Cxxql');
@@ -243,6 +266,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  function openGithubNewFile(filename, content) {
+    if (!filename) return;
+    const encodedFilename = encodeURIComponent(filename);
+    const encodedContent = encodeURIComponent(content || '');
+    const url = `${githubNewBase}?filename=${encodedFilename}&value=${encodedContent}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  const newTermBtn = document.getElementById('new-term-btn');
+  if (newTermBtn) {
+    newTermBtn.addEventListener('click', () => {
+      openGithubNewFile('your-term-id.md', NEW_TERM_TEMPLATE);
+    });
+  }
+
+  async function openEditorForTerm(button) {
+    const file = button.getAttribute('data-term-file');
+    if (!file) return;
+    const originalLabelAttr = 'data-original-label';
+    if (!button.hasAttribute(originalLabelAttr)) {
+      button.setAttribute(originalLabelAttr, button.textContent.trim());
+    }
+    button.disabled = true;
+    button.textContent = '准备模板...';
+    try {
+      const resp = await fetch(`${githubRawBase}${file}?ts=${Date.now()}`);
+      if (!resp.ok) throw new Error('fetch failed');
+      const raw = await resp.text();
+      openGithubNewFile(file, raw.replace(/\r\n/g, '\n'));
+    } catch (err) {
+      console.warn('无法预填内容，改用直接编辑链接', err);
+      window.open(`${githubEditBase}${file}`, '_blank', 'noopener,noreferrer');
+    } finally {
+      button.disabled = false;
+      button.textContent = button.getAttribute(originalLabelAttr) || '✏️ 在线编辑';
+    }
+  }
+
+  document.addEventListener('click', (event) => {
+    const editTermBtn = event.target.closest('.js-edit-term');
+    if (editTermBtn) {
+      event.preventDefault();
+      openEditorForTerm(editTermBtn);
+    }
+  });
+
   applyFilters();
 });
-

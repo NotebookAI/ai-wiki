@@ -2,8 +2,11 @@ title: "AI 专业名词百科"
 description: "AI/LLM/RAG/Agent 等术语的中文百科索引与详情"
 language: zh-CN
 
-url: "https://onewesong.github.io"
+url: "https://notebookai.github.io"
 baseurl: "/ai-wiki"
+repo_owner: "notebookai"
+repo_name: "ai-wiki"
+repo_branch: "main"
 
 permalink: /:categories/:title/
 

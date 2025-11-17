@@ -13,7 +13,11 @@
     <link rel="canonical" href="{{ page.url | absolute_url }}" />
     {% include google-analytics.html %}
   </head>
-  <body>
+  <body
+    data-repo-owner="{{ site.repo_owner | default: 'notebookai' }}"
+    data-repo-name="{{ site.repo_name | default: 'ai-wiki' }}"
+    data-repo-branch="{{ site.repo_branch | default: 'main' }}"
+  >
     <div class="app-shell">
       <header class="app-header">
         <div class="app-title-block">

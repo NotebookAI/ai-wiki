@@ -155,9 +155,15 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 .main-heading { font-size: 14px; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
 .count-pill { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--count-pill-bg); border: 1px solid var(--count-pill-border); color: var(--text-muted); }
 .main-sub { margin: 0; font-size: 11px; color: var(--text-soft); }
+.main-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
 .view-toggle { display: flex; gap: 6px; justify-content: flex-end; }
 .toggle-btn { font-size: 11px; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--toggle-border); background: var(--toggle-bg); color: var(--text-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
 .toggle-btn.active { border-color: var(--primary-strong); color: var(--primary-strong); background: var(--primary-soft); }
+.contrib-btn { border: 1px solid transparent; border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 600; cursor: pointer; background: var(--primary); color: #021b0d; box-shadow: 0 4px 14px rgba(34,197,94,0.35); transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease; }
+.contrib-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(34,197,94,0.45); }
+.contrib-btn.secondary { background: transparent; color: var(--primary-strong); border-color: rgba(34,197,94,0.4); box-shadow: none; padding-left: 10px; padding-right: 10px; }
+.contrib-btn.secondary:hover { background: var(--primary-soft); }
+.contrib-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .term-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
 .term-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 8px 9px 9px; border: 1px solid var(--card-border); position: relative; overflow: hidden; transition: transform 120ms ease-out, box-shadow 120ms ease-out, border-color 120ms ease-out, background 120ms ease-out; cursor: pointer; display: block; color: inherit; text-decoration: none; }
@@ -192,6 +198,8 @@ body.light-theme .term-tag.concept { color: #92400e; background: rgba(254,249,19
 .term-detail-brief { margin: 0 0 6px; color: var(--text-muted); font-size: 13px; }
 .modal-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
 .modal-chip { font-size: 10px; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--meta-border); background: var(--meta-bg); color: var(--text-muted); }
+.term-actions { margin-top: 6px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.term-actions-hint { font-size: 10px; color: var(--text-soft); }
 
 /* giscus 容器底色 */
 #giscus-container { margin-top: 6px; padding: 8px 6px 4px; border-radius: 10px; border: 1px solid var(--giscus-border); background: var(--giscus-bg); }
@@ -216,4 +224,3 @@ body.light-theme .term-tag.concept { color: #92400e; background: rgba(254,249,19
   .term-modal-content { max-height: 95vh; }
   .term-modal-body { padding: 16px; }
 }
-

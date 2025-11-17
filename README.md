@@ -33,7 +33,7 @@ AI 专业名词百科的目标是：
 
 ### 在线访问
 
-- 在线站点：<https://onewesong.github.io/ai-wiki/>
+- 在线站点：<https://notebookai.github.io/ai-wiki/>
 
 你可以：
 
@@ -130,14 +130,14 @@ bundle exec jekyll serve
 ```
 
 > 如仓库以项目页发布，建议设置：
-> - `_config.yml` 中 `url` 与 `baseurl`（例如 `url: https://onewesong.github.io`，`baseurl: /ai-wiki`）
+> - `_config.yml` 中 `url` 与 `baseurl`（例如 `url: https://notebookai.github.io`，`baseurl: /ai-wiki`）
 > - 模板与资源均通过 `relative_url` 过滤器适配 `baseurl`
 
 ### 评论系统giscus
 
 术语详情页通过 giscus 提供评论区，基于「pathname」进行讨论串映射。
 
-`_layouts/term.html` 中脚本默认使用仓库 `onewesong/ai-wiki` 的配置，如需替换到你自己的仓库，请更新：
+`_layouts/term.html` 中脚本默认使用仓库 `notebookai/ai-wiki` 的配置，如需替换到你自己的仓库，请更新：
 
 - `data-repo`
 - `data-repo-id`
@@ -189,7 +189,7 @@ This glossary aims to:
 
 ### Visit Online
 
-- Live site: <https://onewesong.github.io/ai-wiki/>
+- Live site: <https://notebookai.github.io/ai-wiki/>
 
 You can:
 

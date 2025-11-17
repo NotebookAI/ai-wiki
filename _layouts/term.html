@@ -30,6 +30,17 @@ layout: default
         {% if page.type %}<span class="meta-item">类型：{{ page.type }}</span>{% endif %}
         {% if page.aliases %}<span class="meta-item">别名：{{ page.aliases | join: ', ' }}</span>{% endif %}
       </div>
+      <div class="term-actions">
+        <button
+          class="contrib-btn secondary js-edit-term"
+          type="button"
+          data-term-id="{{ page.id }}"
+          data-term-file="{{ page.path | replace_first: '_terms/', '' }}"
+        >
+          ✏️ 在线编辑
+        </button>
+        <span class="term-actions-hint">打开 GitHub 界面，修改后直接生成 PR</span>
+      </div>
     </header>
 
     <div class="term-detail-body">
@@ -50,7 +61,7 @@ layout: default
     if (!container) return;
     const s = document.createElement('script');
     s.src = 'https://giscus.app/client.js';
-    s.setAttribute('data-repo', 'onewesong/ai-wiki');
+    s.setAttribute('data-repo', 'notebookai/ai-wiki');
     s.setAttribute('data-repo-id', 'R_kgDOQVaIew');
     s.setAttribute('data-category', 'Show and tell');
     s.setAttribute('data-category-id', 'DIC_kwDOQVaIe84Cxxql');
@@ -66,4 +77,3 @@ layout: default
     container.appendChild(s);
   })();
 </script>
-

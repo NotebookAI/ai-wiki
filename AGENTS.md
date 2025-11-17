@@ -15,5 +15,19 @@
 ## Commit & Pull Request Guidelines
 Git 历史以动词前缀风格为主（如 `feat: add light theme toggle`、`fix: correct rag alias`），请沿用 `type: short description` 模式。每个 PR 应包含概述、变更清单以及测试说明；若修改 UI/UX（如 `assets/styles.css` 或 `app.js`），附上前后截图或动图。关联 Issue 时在描述中引用 `Fixes #123`，方便自动关闭。保持分支命名清晰，如 `feat/add-term-icl`、`docs/update-config`，并确保 PR 在本地 `make build` 通过后再提交。
 
+## 用户在线编辑流程
+需要让访客直接贡献术语时，可在 `index.html` 或词条页添加“在线编辑”按钮，指向 GitHub 预填文件地址：{% raw %}`https://github.com/<owner>/<repo>/new/main/_terms?filename={{id}}.md&value={{urlencode(template)}}`{% endraw %}。模板可包含完整 Front Matter，例如：
+{% raw %}
+```
+---
+id: your-id
+title: 中文名
+category: foundation
+---
+正文...
+```
+{% endraw %}
+用户在 GitHub UI 中填写完后即可创建分支并发起 PR，无需本地环境。可将模板字符串放入 `assets/app.js`，根据当前词条自动替换 `id/title`，这样“编辑此词条”按钮会把现有内容填入 `value` 参数。若要新增词条，则提供空模板并在按钮旁提示命名规范。
+
 ## Security & Configuration Tips
 项目默认依赖 GitHub Pages；如 Fork 到自定义域名，务必同步更新 `_config.yml` 中的 `url` 与 `baseurl`，并检查 `robots.txt` 是否仍指向正确 sitemap。若切换 giscus 仓库，需在 `_layouts/term.html` 中更新 `data-repo*` 与 `data-category*` 属性，避免把讨论写入上游。请勿提交个人访问令牌或部署密钥，所有敏感配置均应通过仓库 Secrets 或本地 `.env`（不要提交）管理。
