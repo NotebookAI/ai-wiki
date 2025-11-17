@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const repoName = bodyDataset.repoName || 'ai-wiki';
   const repoBranch = bodyDataset.repoBranch || 'main';
   const githubNewBase = `https://github.com/${repoOwner}/${repoName}/new/${repoBranch}/_terms`;
-  const githubRawBase = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${repoBranch}/_terms/`;
   const githubEditBase = `https://github.com/${repoOwner}/${repoName}/edit/${repoBranch}/_terms/`;
   const NEW_TERM_TEMPLATE = [
     '---',
@@ -281,27 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  async function openEditorForTerm(button) {
+  function openEditorForTerm(button) {
     const file = button.getAttribute('data-term-file');
     if (!file) return;
-    const originalLabelAttr = 'data-original-label';
-    if (!button.hasAttribute(originalLabelAttr)) {
-      button.setAttribute(originalLabelAttr, button.textContent.trim());
-    }
-    button.disabled = true;
-    button.textContent = '准备模板...';
-    try {
-      const resp = await fetch(`${githubRawBase}${file}?ts=${Date.now()}`);
-      if (!resp.ok) throw new Error('fetch failed');
-      const raw = await resp.text();
-      openGithubNewFile(file, raw.replace(/\r\n/g, '\n'));
-    } catch (err) {
-      console.warn('无法预填内容，改用直接编辑链接', err);
-      window.open(`${githubEditBase}${file}`, '_blank', 'noopener,noreferrer');
-    } finally {
-      button.disabled = false;
-      button.textContent = button.getAttribute(originalLabelAttr) || '✏️ 在线编辑';
-    }
+    window.open(`${githubEditBase}${file}`, '_blank', 'noopener,noreferrer');
   }
 
   document.addEventListener('click', (event) => {
