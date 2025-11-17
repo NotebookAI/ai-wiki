@@ -126,6 +126,43 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 .layout { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 18px; align-items: flex-start; }
 @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
 
+.about-page {
+  grid-column: 1 / -1;
+  background: var(--main-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--main-border);
+  box-shadow: var(--shadow-soft);
+  padding: 20px 18px 26px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.about-page h1 {
+  margin-top: 4px;
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+.about-page h2 {
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.about-page p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.about-page ul {
+  margin: 4px 0 8px 20px;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.about-page li + li {
+  margin-top: 2px;
+}
+
 /* Sidebar */
 .sidebar { background: var(--sidebar-bg); border-radius: var(--radius-lg); padding: 14px; border: 1px solid var(--sidebar-border); box-shadow: var(--shadow-soft); position: sticky; top: 16px; }
 .sidebar-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }

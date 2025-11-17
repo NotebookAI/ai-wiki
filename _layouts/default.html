@@ -30,7 +30,11 @@
         </div>
         <div class="header-actions">
           <div class="pill">🔍 支持中文 / 英文 / 缩写搜索（快捷键：<strong>/</strong>）</div>
-          <!-- <div class="pill">💬 术语详情页内置 giscus 评论</div> -->
+          {% if page.url == '/about/' %}
+          <a class="pill" href="{{ '/' | relative_url }}">← 返回首页</a>
+          {% else %}
+          <a class="pill" href="{{ '/about/' | relative_url }}">关于本站</a>
+          {% endif %}
           <button id="theme-toggle" class="pill theme-toggle" type="button" aria-pressed="false">
             <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
             <span class="theme-toggle-label">暗色</span>
