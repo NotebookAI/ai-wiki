@@ -15,6 +15,11 @@ vLLM 是加州大学伯克利等机构开源的推理引擎，通过 **PagedAtte
 
 该项目原生支持 Hugging Face Transformers、OpenAI API 兼容接口与张量并行部署，可在单机多卡或分布式环境中运行，是当前在线服务和批量生成的主流方案之一。
 
+### 与其他推理引擎的对比
+- 与 **TensorRT-LLM** 相比：vLLM 更偏通用 Python 生态与快速集成，便于在研究与业务原型中落地；TensorRT-LLM 则深度绑定 NVIDIA 硬件，在极致性能与大规模部署上更有优势。
+- 与 **llama.cpp / GGUF** 相比：vLLM 主要面向服务器侧 GPU 推理，而 llama.cpp 更偏本地与轻量级硬件；两者在模型格式、量化方案和部署场景上各有侧重。
+
+
 ### 参考资料
 - [vLLM 官方文档：High-Throughput LLM Inference Engine](https://docs.vllm.ai/en/latest/)（提供架构设计、部署指南与 API）
 - [官方论文《Efficient Memory Management for Large Language Model Serving with PagedAttention》](https://arxiv.org/abs/2309.06180)（系统性介绍 PagedAttention 与性能评估）
