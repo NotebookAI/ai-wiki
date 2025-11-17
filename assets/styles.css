@@ -52,6 +52,9 @@
 body.light-theme {
   --bg: #f8fafc;
   --bg-elevated: #ffffff;
+  --primary: #16a34a;
+  --primary-soft: rgba(16,163,74,0.08);
+  --primary-strong: #15803d;
   --text-main: #0f172a;
   --text-muted: #475569;
   --text-soft: #94a3b8;
