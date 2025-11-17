@@ -120,7 +120,8 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 .header-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .pill { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--pill-border); font-size: 11px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; background: var(--pill-bg); backdrop-filter: blur(8px); }
 .theme-toggle { cursor: pointer; background: var(--pill-bg); color: var(--text-muted); }
-.theme-toggle .theme-toggle-icon { font-size: 14px; }
+.theme-toggle .theme-toggle-icon { font-size: 11px; line-height: 1; }
+.theme-toggle .theme-toggle-label { font-size: 11px; }
 .pill strong { color: var(--primary-strong); font-weight: 600; }
 
 .layout { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 18px; align-items: flex-start; }
