@@ -57,15 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   (function initTheme() {
+    // 检测系统偏好
+    const getSystemTheme = () => {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
+      }
+      return 'dark';
+    };
+
     let storedTheme = null;
     try {
       storedTheme = localStorage.getItem(THEME_KEY);
     } catch (err) {
       storedTheme = null;
     }
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    const initialTheme = storedTheme || (prefersLight ? 'light' : 'dark');
-    applyTheme(initialTheme);
+
+    // 如果没有用户手动设置的主题，使用系统偏好
+    const initialTheme = storedTheme || getSystemTheme();
+    applyTheme(initialTheme, !!storedTheme); // 只有存储的主题才持久化
+
+    // 监听系统主题变化（仅在用户未手动设置时生效）
+    if (window.matchMedia && !storedTheme) {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+      mediaQuery.addEventListener('change', (e) => {
+        // 如果用户没有手动设置过主题，则跟随系统变化
+        const currentStored = localStorage.getItem(THEME_KEY);
+        if (!currentStored) {
+          applyTheme(e.matches ? 'light' : 'dark', false);
+        }
+      });
+    }
   })();
 
   if (themeToggle) {
