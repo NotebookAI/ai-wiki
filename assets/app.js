@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '---',
     '',
     '在此补充正文，支持 Markdown。',
-    ''
+    '目标: 清晰、克制、好懂',
+    '可参考写作指南: https://github.com/notebookai/ai-wiki/blob/main/WRITING.md'
   ].join('\n');
 
   const THEME_KEY = 'aiwiki-theme';
