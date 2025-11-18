@@ -112,7 +112,7 @@ a:hover { text-decoration: underline; }
 
 .app-shell { width: 100%; max-width: 1240px; padding: 20px 16px 32px; }
 .app-header { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-.app-title-block { display: flex; flex-direction: column; gap: 4px; }
+.app-title-block { display: flex; flex-direction: row; align-items: center; gap: 12px; }
 .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: var(--badge-bg); border: 1px solid var(--badge-border); backdrop-filter: blur(10px); font-size: 11px; color: var(--text-muted); }
 .badge-dot { width: 7px; height: 7px; border-radius: 999px; background: radial-gradient(circle at 30% 30%, #dcfce7 0, #22c55e 30%, #16a34a 100%); box-shadow: 0 0 8px rgba(34,197,94,0.9); }
 h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }

@@ -1,9 +1,9 @@
 title: "AI 专业名词百科"
-description: "AI/LLM/RAG/Agent 等术语的中文百科索引与详情"
+description: "AI/LLM 相关名词的可搜索索引与分类列表，涵盖大语言模型、检索增强生成、智能体、训练微调、推理部署等核心概念，提供详细的术语解释与分类浏览。"
 language: zh-CN
 
 url: "https://ai-wiki.zncu.site"
-baseurl: "/"
+baseurl: ""
 repo_owner: "notebookai"
 repo_name: "ai-wiki"
 repo_branch: "main"

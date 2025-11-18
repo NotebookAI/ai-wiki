@@ -21,12 +21,12 @@
     <div class="app-shell">
       <header class="app-header">
         <div class="app-title-block">
+          <h1>{{ site.title }}</h1>
           <div class="badge">
             <span class="badge-dot"></span>
-            AI 专业名词百科 · 可搜索 · 分类 · 创建 · 编辑 · 评论
+            可搜索 · 分类 · 创建 · 编辑 · 评论
           </div>
-          <h1>{{ site.title }}</h1>
-          <p class="subtitle">{{ site.description }}</p>
+          <!-- <p class="subtitle">{{ site.description }}</p> -->
         </div>
         <div class="header-actions">
           <a class="pill" href="https://github.com/{{ site.repo_owner | default: 'notebookai' }}/{{ site.repo_name | default: 'ai-wiki' }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
