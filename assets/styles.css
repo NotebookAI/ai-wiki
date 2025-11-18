@@ -172,6 +172,13 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 
 /* Sidebar */
 .sidebar { background: var(--sidebar-bg); border-radius: var(--radius-lg); padding: 14px; border: 1px solid var(--sidebar-border); box-shadow: var(--shadow-soft); position: sticky; top: 16px; }
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    top: auto;
+    margin-bottom: 12px;
+  }
+}
 .sidebar-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }
 .sidebar-title span { font-size: 11px; color: var(--text-soft); font-weight: 400; }
 .search-box { position: relative; margin-bottom: 12px; }
