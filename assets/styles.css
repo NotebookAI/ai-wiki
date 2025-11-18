@@ -12,7 +12,10 @@
   --radius-lg: 16px;
   --radius-md: 10px;
   --shadow-soft: 0 18px 45px rgba(15,23,42,0.65);
-  --body-bg: radial-gradient(circle at top, #020617 0, #000 55%, #000 100%);
+  --body-bg:
+    radial-gradient(130% 160% at 0% 0%, rgba(34,197,94,0.18), transparent 60%),
+    radial-gradient(120% 150% at 100% 100%, rgba(56,189,248,0.16), transparent 62%),
+    radial-gradient(circle at top, #020617 0, #020617 38%, #000 78%, #000 100%);
   --badge-bg: rgba(15,23,42,0.9);
   --badge-border: rgba(148,163,184,0.25);
   --pill-bg: rgba(15,23,42,0.7);
@@ -60,7 +63,10 @@ body.light-theme {
   --text-soft: #94a3b8;
   --border-subtle: #cbd5f5;
   --shadow-soft: 0 18px 45px rgba(15,23,42,0.12);
-  --body-bg: radial-gradient(circle at top, #f8fafc 0, #e2e8f0 55%, #e2e8f0 100%);
+  --body-bg:
+    radial-gradient(130% 160% at 0% 0%, rgba(34,197,94,0.16), transparent 64%),
+    radial-gradient(120% 150% at 100% 100%, rgba(59,130,246,0.18), transparent 60%),
+    radial-gradient(circle at top, #f8fafc 0, #f8fafc 40%, #e2e8f0 80%, #e2e8f0 100%);
   --badge-bg: rgba(255,255,255,0.8);
   --badge-border: rgba(148,163,184,0.5);
   --pill-bg: rgba(255,255,255,0.85);
