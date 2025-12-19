@@ -1,0 +1,20 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# AI 专业名词百科（ai-wiki）
+
+这是一个面向 AI / LLM / RAG / Agent 的术语百科与实践索引，内容以简体中文为主；词条包含：中文名、英文名、别名、关键词、一句话简介与参考链接。
+
+## 主要入口
+
+- 首页：{{ '/' | absolute_url }}
+- 术语列表（JSON）：{{ '/terms.json' | absolute_url }}
+- RAG 指南：{{ '/guides/rag/' | absolute_url }}
+- RAG 评测清单：{{ '/guides/rag-evaluation/' | absolute_url }}
+
+## 术语页面规则
+
+- 每个词条位于 `/terms/<id>/`，`id` 为 kebab-case
+- 词条 Front Matter 含：`id/title/title_en/category/type/aliases/keywords/brief`

@@ -199,6 +199,9 @@ h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
 .legend-dot.tool { background: #f97316; }
 .legend-dot.concept { background: #eab308; }
 
+.guide-links { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--legend-border); display: flex; flex-direction: column; gap: 10px; }
+.guide-links-title { font-size: 12px; font-weight: 600; color: var(--text-main); margin-bottom: -2px; }
+
 /* Main */
 .main { background: var(--main-bg); border-radius: var(--radius-lg); border: 1px solid var(--main-border); padding: 14px 14px 18px; box-shadow: var(--shadow-soft); }
 .main-header { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }

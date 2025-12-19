@@ -26,4 +26,14 @@ AI 搜索（AI Search）通常指“答案引擎”式的搜索体验：系统�
 - **成本与延迟**：多次检索 + 重排 + 长上下文会显著增加延迟，需要缓存与分层策略。
 
 ### 相关词条
-- {{ '/terms/rag/' | relative_url }}、{{ '/terms/embedding/' | relative_url }}、{{ '/terms/reranker/' | relative_url }}、{{ '/terms/hallucination/' | relative_url }}、{{ '/terms/tool-calling/' | relative_url }}、{{ '/terms/grounding/' | relative_url }}、{{ '/terms/rag-evaluation/' | relative_url }}
+- [RAG]({{ '/terms/rag/' | relative_url }})、[向量（Embedding）]({{ '/terms/embedding/' | relative_url }})、[Reranker]({{ '/terms/reranker/' | relative_url }})、[幻觉（Hallucination）]({{ '/terms/hallucination/' | relative_url }})、[工具调用（Tool Calling）]({{ '/terms/tool-calling/' | relative_url }})、[Grounding]({{ '/terms/grounding/' | relative_url }})、[RAG 评测]({{ '/terms/rag-evaluation/' | relative_url }})
+
+### 实践入口
+- [RAG / AI 搜索指南（可引用清单）]({{ '/guides/rag/' | relative_url }})
+- [RAG 评测与回归清单（Checklist）]({{ '/guides/rag-evaluation/' | relative_url }})
+
+### 延伸阅读（站内）
+- [RAG / AI 搜索实践指南]({{ '/guides/rag/' | relative_url }})
+
+### 实践指南
+- [RAG / AI 搜索实践指南]({{ '/guides/rag/' | relative_url }})

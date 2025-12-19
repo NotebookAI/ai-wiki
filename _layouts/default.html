@@ -11,6 +11,7 @@
     {% seo %}
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ '/sitemap.xml' | relative_url }}" />
     <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    {% include jsonld.html %}
     {% include google-analytics.html %}
   </head>
   <body

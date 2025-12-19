@@ -1,0 +1,20 @@
+---
+layout: null
+permalink: /terms.json
+---
+[
+  {% assign items = site.terms | sort: 'order' %}
+  {% for t in items %}
+  {
+    "id": {{ t.path | split: '/' | last | replace: '.md', '' | jsonify }},
+    "title": {{ t.title | jsonify }},
+    "title_en": {{ t.title_en | jsonify }},
+    "brief": {{ t.brief | default: t.description | strip_newlines | jsonify }},
+    "category": {{ t.category | jsonify }},
+    "type": {{ t.type | jsonify }},
+    "aliases": {{ t.aliases | jsonify }},
+    "keywords": {{ t.keywords | jsonify }},
+    "url": {{ t.url | absolute_url | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

@@ -30,5 +30,4 @@ meta: [对抗提示, 安全风险]
 - **安全边界外置**：不要把“模型拒答”当作唯一安全机制，关键动作需要权限与审计兜底。
 
 ### 相关词条
-- {{ '/terms/prompt-injection/' | relative_url }}、{{ '/terms/ai-safety/' | relative_url }}、{{ '/terms/red-teaming/' | relative_url }}
-
+- [提示注入]({{ '/terms/prompt-injection/' | relative_url }})、[AI Safety]({{ '/terms/ai-safety/' | relative_url }})、[红队测试]({{ '/terms/red-teaming/' | relative_url }})

@@ -114,7 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.forEach(card => {
       const cat = card.getAttribute('data-category') || 'all';
       const text = (
-        card.textContent + ' ' + (card.getAttribute('data-keywords') || '')
+        card.textContent + ' ' +
+        (card.getAttribute('data-keywords') || '') + ' ' +
+        (card.getAttribute('data-content') || '')
       ).toLowerCase();
       const catOk = currentCategory === 'all' || cat === currentCategory;
       const kwOk = !kw || text.includes(kw);

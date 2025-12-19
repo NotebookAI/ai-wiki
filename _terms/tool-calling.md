@@ -26,7 +26,7 @@ meta: [Agent 基础, 结构化交互]
 
 ### 容易踩坑的点
 - **幻觉调用**：模型可能调用不存在的工具或拼错参数；需要严格校验与错误回传。
-- **注入攻击**：来自网页/文档/用户的内容可能诱导模型越权调用工具；需要权限分层、上下文隔离与策略约束（见 {{ '/terms/prompt-injection/' | relative_url }} 与 {{ '/terms/guardrails/' | relative_url }}）。
+- **注入攻击**：来自网页/文档/用户的内容可能诱导模型越权调用工具；需要权限分层、上下文隔离与策略约束（见 [提示注入]({{ '/terms/prompt-injection/' | relative_url }}) 与 [Guardrails]({{ '/terms/guardrails/' | relative_url }})）。
 - **非确定性**：同一意图可能出现不同调用形式；建议用“结构化输出/约束解码”提高一致性。
 
 ### 典型用法

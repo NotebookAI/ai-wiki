@@ -36,6 +36,5 @@ meta: [基准测试, 安全评估, 线上监控]
 - **分层看指标**：能力（离线）+ 可靠性（格式/一致性）+ 安全（红队）+ 体验（在线）。
 
 ### 相关词条
-- 基准：{{ '/terms/mmlu/' | relative_url }}、{{ '/terms/mt-bench/' | relative_url }}
-- 安全：{{ '/terms/red-teaming/' | relative_url }}、{{ '/terms/ai-safety/' | relative_url }}
-
+- 基准：[MMLU]({{ '/terms/mmlu/' | relative_url }})、[MT-Bench]({{ '/terms/mt-bench/' | relative_url }})
+- 安全：[红队测试]({{ '/terms/red-teaming/' | relative_url }})、[AI Safety]({{ '/terms/ai-safety/' | relative_url }})

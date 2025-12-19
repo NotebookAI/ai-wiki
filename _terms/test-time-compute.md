@@ -22,5 +22,4 @@ meta: [推理权衡, 质量提升]
 - 复杂推理、代码生成、需要高可靠性/低幻觉的场景，往往比“只生成一次”收益更大。
 
 ### 相关词条
-- {{ '/terms/speculative-decoding/' | relative_url }}、{{ '/terms/llm-evaluation/' | relative_url }}
-
+- [推测解码]({{ '/terms/speculative-decoding/' | relative_url }})、[LLM 评测]({{ '/terms/llm-evaluation/' | relative_url }})

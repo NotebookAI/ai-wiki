@@ -23,5 +23,13 @@ Grounding（基于证据的生成）强调：模型输出的关键结论应能�
 - Grounding 也会带来成本与延迟，需要缓存、分层与路由策略配合。
 
 ### 相关词条
-- {{ '/terms/hallucination/' | relative_url }}、{{ '/terms/rag/' | relative_url }}、{{ '/terms/ai-search/' | relative_url }}、{{ '/terms/tool-calling/' | relative_url }}
+- [幻觉（Hallucination）]({{ '/terms/hallucination/' | relative_url }})、[RAG]({{ '/terms/rag/' | relative_url }})、[AI 搜索]({{ '/terms/ai-search/' | relative_url }})、[工具调用（Tool Calling）]({{ '/terms/tool-calling/' | relative_url }})
 
+### 实践入口
+- [RAG / AI 搜索指南（可引用清单）]({{ '/guides/rag/' | relative_url }})
+
+### 延伸阅读（站内）
+- [RAG / AI 搜索实践指南]({{ '/guides/rag/' | relative_url }})
+
+### 实践指南
+- [RAG / AI 搜索实践指南]({{ '/guides/rag/' | relative_url }})

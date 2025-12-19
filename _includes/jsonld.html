@@ -1,0 +1,52 @@
+{% assign page_url = page.url | absolute_url %}
+{% assign site_url = '/' | absolute_url %}
+{% assign page_desc = page.description | default: page.brief | default: site.description | strip_newlines %}
+{% capture aliases_json %}{% if page.aliases and page.aliases.size > 0 %}{{ page.aliases | jsonify }}{% else %}[]{% endif %}{% endcapture %}
+{% capture keywords_json %}{% if page.keywords and page.keywords.size > 0 %}{{ page.keywords | join: ', ' | jsonify }}{% else %}""{% endif %}{% endcapture %}
+
+{% if page.url == '/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.title | jsonify }},
+  "url": {{ site_url | jsonify }},
+  "inLanguage": {{ site.language | default: "zh-CN" | jsonify }},
+  "description": {{ site.description | strip_newlines | jsonify }}
+}
+</script>
+{% elsif page.collection == 'terms' or page.path contains '_terms/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": {{ page.title | jsonify }},
+  "alternateName": {{ aliases_json | strip }},
+  "description": {{ page_desc | jsonify }},
+  "url": {{ page_url | jsonify }},
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": {{ site.title | jsonify }},
+    "url": {{ site_url | jsonify }}
+  },
+  "keywords": {{ keywords_json | strip }},
+  "inLanguage": {{ site.language | default: "zh-CN" | jsonify }}
+}
+</script>
+{% else %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page_desc | jsonify }},
+  "url": {{ page_url | jsonify }},
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "url": {{ site_url | jsonify }}
+  },
+  "inLanguage": {{ site.language | default: "zh-CN" | jsonify }}
+}
+</script>
+{% endif %}

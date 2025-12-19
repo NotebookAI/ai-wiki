@@ -29,8 +29,7 @@ meta: [安全攻击, 注入]
 - **审计与回放**：记录工具调用与关键决策，支持事后追踪与回归测试。
 
 ### 相关词条
-- {{ '/terms/jailbreak/' | relative_url }}、{{ '/terms/tool-calling/' | relative_url }}、{{ '/terms/guardrails/' | relative_url }}、{{ '/terms/red-teaming/' | relative_url }}
+- [越狱]({{ '/terms/jailbreak/' | relative_url }})、[工具调用]({{ '/terms/tool-calling/' | relative_url }})、[Guardrails]({{ '/terms/guardrails/' | relative_url }})、[红队测试]({{ '/terms/red-teaming/' | relative_url }})
 
 ### 参考资料
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)（覆盖提示注入等常见风险）
-

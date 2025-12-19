@@ -24,5 +24,7 @@ RAG 评测关注的不只是“答案看起来对不对”，还包括：检索�
 - **把引用当作可验证接口**：要求输出携带证据片段/来源，便于自动化核验。
 
 ### 相关词条
-- {{ '/terms/rag/' | relative_url }}、{{ '/terms/reranker/' | relative_url }}、{{ '/terms/embedding/' | relative_url }}、{{ '/terms/grounding/' | relative_url }}
+- [RAG]({{ '/terms/rag/' | relative_url }})、[Reranker]({{ '/terms/reranker/' | relative_url }})、[向量（Embedding）]({{ '/terms/embedding/' | relative_url }})、[Grounding]({{ '/terms/grounding/' | relative_url }})
 
+### 实践入口
+- [RAG 评测与回归清单（Checklist）]({{ '/guides/rag-evaluation/' | relative_url }})

@@ -78,6 +78,12 @@ title: AI 专业名词百科
     <div class="legend-item"><span class="legend-dot tool"></span> 工具 / 框架</div>
     <div class="legend-item"><span class="legend-dot concept"></span> 概念 / 方法</div>
   </div>
+
+  <div class="guide-links">
+    <div class="guide-links-title">专题指南</div>
+    <a class="category-chip" href="{{ '/guides/rag/' | relative_url }}"><span>RAG / AI 搜索指南</span><small>可引用清单</small></a>
+    <a class="category-chip" href="{{ '/guides/rag-evaluation/' | relative_url }}"><span>RAG 评测与回归</span><small>Checklist</small></a>
+  </div>
 </aside>
 
 <section class="main">
@@ -102,14 +108,17 @@ title: AI 专业名词百科
     {% assign items = site.terms | sort: 'order' %}
     {% for t in items %}
       {% capture brief %}{{ t.brief | default: t.description }}{% endcapture %}
+      {% assign term_id = t.path | split: '/' | last | replace: '.md', '' %}
+      {% assign term_content = t.content | strip_html | strip_newlines %}
       {% include card.html
         url=t.url
-        id=t.id
+        id=term_id
         category=t.category
         type=t.type
         title_zh=t.title
         title_en=t.title_en
         brief=brief
+        content=term_content
         meta=t.meta
         aliases=t.aliases
         keywords=t.keywords

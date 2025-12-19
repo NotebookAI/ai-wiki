@@ -29,5 +29,4 @@ meta: [成本控制, 质量分层, 多模型]
 - **一致性问题**：不同模型输出风格不同，需用提示模板与结构化输出做收敛。
 
 ### 相关词条
-- {{ '/terms/llm-inference/' | relative_url }}、{{ '/terms/kv-cache/' | relative_url }}、{{ '/terms/llm-evaluation/' | relative_url }}
-
+- [LLM 推理]({{ '/terms/llm-inference/' | relative_url }})、[KV Cache]({{ '/terms/kv-cache/' | relative_url }})、[LLM 评测]({{ '/terms/llm-evaluation/' | relative_url }})

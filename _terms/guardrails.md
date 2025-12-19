@@ -24,5 +24,4 @@ Guardrails（防护栏）不是单一技术，而是一组工程实践：在模�
 - 不要把“只靠 prompt”当作防护栏：提示可以提升一致性，但不能替代权限、隔离与审计。
 
 ### 相关词条
-- {{ '/terms/structured-output/' | relative_url }}、{{ '/terms/tool-calling/' | relative_url }}、{{ '/terms/prompt-injection/' | relative_url }}、{{ '/terms/llm-evaluation/' | relative_url }}
-
+- [结构化输出]({{ '/terms/structured-output/' | relative_url }})、[工具调用]({{ '/terms/tool-calling/' | relative_url }})、[提示注入]({{ '/terms/prompt-injection/' | relative_url }})、[LLM 评测]({{ '/terms/llm-evaluation/' | relative_url }})

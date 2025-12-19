@@ -15,3 +15,5 @@ Reranker（重排模型）通常在向量检索或 BM25 检索得到的候选文
 
 诸如 bge-reranker 等开源模型在中文与多语言检索任务中表现良好，常用于企业级搜索、RAG 系统与问答平台的精排模块。
 
+### 相关词条
+- [Retriever]({{ '/terms/retriever/' | relative_url }})、[BM25]({{ '/terms/bm25/' | relative_url }})、[混合检索（Hybrid Search）]({{ '/terms/hybrid-search/' | relative_url }})、[RAG]({{ '/terms/rag/' | relative_url }})

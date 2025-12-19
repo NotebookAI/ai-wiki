@@ -3,7 +3,8 @@
    data-id="{{ include.id }}"
    data-category="{{ include.category }}"
    data-type="{{ include.type }}"
-   data-keywords="{{ include.keywords | join: ' ' }}">
+   data-keywords="{{ include.keywords | join: ' ' }} {{ include.aliases | join: ' ' }}"
+   data-content="{{ include.content | escape }}">
   <div class="term-header">
     <div class="term-name">
       {{ include.title_zh }}
@@ -22,4 +23,3 @@
     {% if include.aliases %}<span class="term-alias">别名：{{ include.aliases | join: ' / ' }}</span>{% endif %}
   </div>
 </a>
-
