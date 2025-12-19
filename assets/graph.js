@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const nodeCountEl = document.getElementById('graph-node-count');
   const edgeCountEl = document.getElementById('graph-edge-count');
   const totalCountEl = document.getElementById('graph-total-count');
-  const resetBtn = document.getElementById('graph-reset-btn');
+  const resetButtons = Array.from(document.querySelectorAll('.js-graph-reset'));
+  const fullscreenButtons = Array.from(document.querySelectorAll('.js-graph-fullscreen'));
+  const zoomInButtons = Array.from(document.querySelectorAll('.js-graph-zoom-in'));
+  const zoomOutButtons = Array.from(document.querySelectorAll('.js-graph-zoom-out'));
   const toggleLabels = document.getElementById('graph-toggle-labels');
   const toggleCategories = document.getElementById('graph-toggle-categories');
   const toggleCategoryEdges = document.getElementById('graph-toggle-cat-edges');
@@ -192,6 +195,71 @@ document.addEventListener('DOMContentLoaded', () => {
     state.transform.scale = 1;
     state.transform.ox = rect.width / 2;
     state.transform.oy = rect.height / 2;
+    state.alpha = 1;
+  }
+
+  function isFullscreenActive() {
+    return document.fullscreenElement === container;
+  }
+
+  function setFullscreenButtons(active, supported) {
+    fullscreenButtons.forEach(btn => {
+      if (!btn) return;
+      if (supported === false) {
+        btn.setAttribute('title', '当前浏览器不支持原生全屏，已使用页面全屏模式');
+      } else {
+        btn.removeAttribute('title');
+      }
+      btn.setAttribute('aria-label', active ? '退出全屏' : '全屏');
+      btn.setAttribute('title', active ? '退出全屏' : '全屏');
+
+      const enterIcon = btn.querySelector('.icon-fs-enter');
+      const exitIcon = btn.querySelector('.icon-fs-exit');
+      if (enterIcon) enterIcon.style.display = active ? 'none' : 'block';
+      if (exitIcon) exitIcon.style.display = active ? 'block' : 'none';
+    });
+  }
+
+  function setFallbackFullscreen(active) {
+    document.body.classList.toggle('graph-fs', !!active);
+    setFullscreenButtons(!!active, false);
+    resizeCanvas();
+    state.alpha = 1;
+  }
+
+  async function toggleFullscreen() {
+    const active = isFullscreenActive();
+    if (active) {
+      try {
+        await document.exitFullscreen();
+      } catch (err) {
+        setFallbackFullscreen(false);
+      }
+      return;
+    }
+
+    if (container.requestFullscreen && document.fullscreenEnabled) {
+      try {
+        await container.requestFullscreen();
+        return;
+      } catch (err) {
+        setFallbackFullscreen(true);
+        return;
+      }
+    }
+
+    setFallbackFullscreen(true);
+  }
+
+  function zoomAt(screenX, screenY, factor) {
+    const rect = container.getBoundingClientRect();
+    const x = typeof screenX === 'number' ? screenX : rect.width / 2;
+    const y = typeof screenY === 'number' ? screenY : rect.height / 2;
+    const before = screenToWorld(x, y);
+    state.transform.scale = Math.max(0.2, Math.min(3.5, state.transform.scale * factor));
+    const after = worldToScreen(before.x, before.y);
+    state.transform.ox += x - after.x;
+    state.transform.oy += y - after.y;
     state.alpha = 1;
   }
 
@@ -450,18 +518,19 @@ document.addEventListener('DOMContentLoaded', () => {
       state.alpha = 1;
     });
 
+    document.addEventListener('fullscreenchange', () => {
+      const on = isFullscreenActive();
+      setFullscreenButtons(on, true);
+      resizeCanvas();
+      state.alpha = 1;
+    });
+
     container.addEventListener('wheel', (e) => {
       e.preventDefault();
       const rect = container.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
-      const before = screenToWorld(mx, my);
-      const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
-      state.transform.scale = Math.max(0.2, Math.min(3.5, state.transform.scale * factor));
-      const after = worldToScreen(before.x, before.y);
-      state.transform.ox += mx - after.x;
-      state.transform.oy += my - after.y;
-      state.alpha = 1;
+      zoomAt(mx, my, e.deltaY < 0 ? 1.12 : 1 / 1.12);
     }, { passive: false });
 
     container.addEventListener('mousedown', (e) => {
@@ -572,9 +641,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (resetBtn) {
-      resetBtn.addEventListener('click', resetView);
-    }
+    resetButtons.forEach(btn => btn && btn.addEventListener('click', resetView));
+    fullscreenButtons.forEach(btn => btn && btn.addEventListener('click', toggleFullscreen));
+    zoomInButtons.forEach(btn => btn && btn.addEventListener('click', () => zoomAt(null, null, 1.18)));
+    zoomOutButtons.forEach(btn => btn && btn.addEventListener('click', () => zoomAt(null, null, 1 / 1.18)));
+    setFullscreenButtons(isFullscreenActive() || document.body.classList.contains('graph-fs'), true);
 
     if (searchInput) {
       const doSearch = () => {
