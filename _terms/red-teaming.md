@@ -15,6 +15,11 @@ meta: [安全评估, 对抗样本, 内容过滤]
 
 业界常结合人类专家、模型自我博弈与工具脚本进行持续红蓝对抗，以覆盖仇恨言论、虚假信息、生物化学、网络攻击等高风险场景。测试结果还需与监管框架（如 NIST AI RMF）对齐，形成可审计的安全报告。
 
+在 GenAI 应用里，红队常重点覆盖：
+- 提示注入与间接注入：{{ '/terms/prompt-injection/' | relative_url }}
+- 越狱（绕过拒答/安全规则）：{{ '/terms/jailbreak/' | relative_url }}
+- 工具与权限越界：{{ '/terms/tool-calling/' | relative_url }}（尤其是写操作）
+
 ### 参考资料
 - [Anthropic 论文《Red Teaming Language Models with Language Models》](https://arxiv.org/abs/2202.03286)（介绍利用模型辅助红队的流程与案例）
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)（提供 AI 系统安全治理与评估的参考框架）

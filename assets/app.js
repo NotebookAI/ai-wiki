@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'title_en: English Name',
     'category: foundation',
     'type: core',
+    'order: 999',
     'aliases: []',
     'keywords: []',
     'brief: 术语一句话简介',
