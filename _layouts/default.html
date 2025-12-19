@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description }}" />
+    <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml" />
     <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}" />
     {% seo %}
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ '/sitemap.xml' | relative_url }}" />
@@ -22,7 +23,12 @@
     <div class="app-shell">
       <header class="app-header">
         <div class="app-title-block">
-          <h1>{{ site.title }}</h1>
+          <h1 class="site-title">
+            <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+              <img class="brand-logo" src="{{ '/assets/logo.svg' | relative_url }}" width="28" height="28" alt="" aria-hidden="true" decoding="async" />
+              <span class="brand-text">{{ site.title }}</span>
+            </a>
+          </h1>
           <div class="badge">
             <span class="badge-dot"></span>
             可搜索 · 分类 · 创建 · 编辑 · 评论
