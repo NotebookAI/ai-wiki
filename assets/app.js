@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  window.AIWiki = window.AIWiki || {};
+
   const termGrid = document.getElementById('term-grid');
   const searchInput = document.getElementById('search-input');
   const categoryButtons = Array.from(document.querySelectorAll('.category-chip'));
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const repoOwner = bodyDataset.repoOwner || 'notebookai';
   const repoName = bodyDataset.repoName || 'ai-wiki';
   const repoBranch = bodyDataset.repoBranch || 'main';
+  const baseurl = bodyDataset.baseurl || '';
   const githubNewBase = `https://github.com/${repoOwner}/${repoName}/new/${repoBranch}/_terms`;
   const githubEditBase = `https://github.com/${repoOwner}/${repoName}/edit/${repoBranch}/_terms/`;
   const NEW_TERM_TEMPLATE = [
@@ -176,20 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.querySelector('.term-modal-close');
   const modalOverlay = document.querySelector('.term-modal-overlay');
   let giscusScript = null;
+  let modalReturnUrl = null;
 
-  function closeModal() {
+  function closeModal(options = {}) {
+    const restoreHistory = !!options.restoreHistory;
     if (modal) {
       modal.classList.remove('show');
       modal.style.display = 'none';
-      // 更新 URL 到首页（保持 baseurl）
-      const currentPath = window.location.pathname;
-      const pathParts = currentPath.split('/').filter(p => p);
-      // 如果路径包含 /ai-wiki，保留它；否则回到根目录
-      const baseurl = pathParts[0] === 'ai-wiki' ? '/ai-wiki' : '';
-      const homePath = baseurl + '/';
-      if (currentPath !== homePath && currentPath !== baseurl) {
-        window.history.pushState({}, '', homePath);
-      }
       // 清理 giscus
       if (giscusScript && giscusScript.parentNode) {
         giscusScript.parentNode.removeChild(giscusScript);
@@ -200,17 +196,33 @@ document.addEventListener('DOMContentLoaded', () => {
         giscusContainer.innerHTML = '';
       }
     }
+
+    if (restoreHistory) {
+      const homePath = `${baseurl}/`.replace(/\/+$/, '/') || '/';
+      if (window.history.state && window.history.state.modal) {
+        window.history.back();
+      } else if (modalReturnUrl) {
+        window.history.pushState({}, '', modalReturnUrl);
+      } else {
+        window.history.pushState({}, '', homePath);
+      }
+    }
   }
 
-  function openModal(url) {
+  function openModal(url, options = {}) {
     if (!modal || !modalBody) return;
-    
+
+    const fromPopstate = !!options.fromPopstate;
     modal.style.display = 'flex';
     modal.classList.add('show');
     modalBody.innerHTML = '<div class="term-modal-loading">加载中...</div>';
-    
-    // 更新 URL（保持 SEO 友好）
-    window.history.pushState({ modal: true, url: url }, '', url);
+
+    if (!fromPopstate) {
+      modalReturnUrl = window.location.pathname + window.location.search + window.location.hash;
+      window.history.pushState({ modal: true, url: url, returnUrl: modalReturnUrl }, '', url);
+    } else if (options.returnUrl) {
+      modalReturnUrl = options.returnUrl;
+    }
 
     // 加载内容
     fetch(url)
@@ -253,6 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
+  window.AIWiki.openModal = openModal;
+  window.AIWiki.closeModal = closeModal;
+
   // 拦截卡片点击
   cards.forEach(card => {
     card.addEventListener('click', (e) => {
@@ -266,27 +281,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 关闭按钮
   if (modalClose) {
-    modalClose.addEventListener('click', closeModal);
+    modalClose.addEventListener('click', () => closeModal({ restoreHistory: true }));
   }
 
   // 点击外部关闭
   if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', () => closeModal({ restoreHistory: true }));
   }
 
   // ESC 键关闭
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal && modal.classList.contains('show')) {
-      closeModal();
+      closeModal({ restoreHistory: true });
     }
   });
 
   // 处理浏览器前进/后退
   window.addEventListener('popstate', (e) => {
     if (e.state && e.state.modal && e.state.url) {
-      openModal(e.state.url);
+      openModal(e.state.url, { fromPopstate: true, returnUrl: e.state.returnUrl });
     } else {
-      closeModal();
+      closeModal({ restoreHistory: false });
     }
   });
 
@@ -297,6 +312,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = `${githubNewBase}?filename=${encodedFilename}&value=${encodedContent}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }
+
+  window.AIWiki.openGithubNewFile = openGithubNewFile;
 
   const newTermBtn = document.getElementById('new-term-btn');
   if (newTermBtn) {

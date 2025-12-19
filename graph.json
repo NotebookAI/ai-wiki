@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /graph.json
+---
+{
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "terms": [
+    {% assign items = site.terms | sort: 'order' %}
+    {% for t in items %}
+    {% capture graph_text %}{{ t.title }} {{ t.title_en }} {{ t.brief | default: t.description }} {{ t.aliases | join: ' ' }} {{ t.keywords | join: ' ' }} {{ t.content }}{% endcapture %}
+    {
+      "id": {{ t.path | split: '/' | last | replace: '.md', '' | jsonify }},
+      "title": {{ t.title | jsonify }},
+      "title_en": {{ t.title_en | jsonify }},
+      "brief": {{ t.brief | default: t.description | strip_newlines | jsonify }},
+      "category": {{ t.category | jsonify }},
+      "type": {{ t.type | jsonify }},
+      "aliases": {{ t.aliases | jsonify }},
+      "keywords": {{ t.keywords | jsonify }},
+      "url": {{ t.url | relative_url | jsonify }},
+      "text": {{ graph_text | strip_html | strip_newlines | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}

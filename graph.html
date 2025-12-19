@@ -1,0 +1,126 @@
+---
+layout: default
+title: 知识图谱
+description: 以图形化方式串联本站术语与引用关系，支持搜索、缩放与分类高亮。
+permalink: /graph/
+graph: true
+---
+
+<aside class="sidebar">
+  <div class="sidebar-title">
+    知识图谱
+    <span>点击节点打开词条</span>
+  </div>
+
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input id="graph-search-input" class="search-input" type="text" placeholder="搜索（id/中/英/别名/关键字）..." />
+    <span class="shortcut-hint">/</span>
+  </div>
+
+  <div class="category-list" id="graph-category-list">
+    <button class="category-chip active" data-category="all">
+      <span>全部（All）</span>
+      <small id="graph-total-count">-</small>
+    </button>
+
+    <button class="category-chip" data-category="foundation">
+      <span>基础概念 & 大模型基础</span>
+      <small>AI / ML / LLM / Transformer</small>
+    </button>
+
+    <button class="category-chip" data-category="model">
+      <span>模型能力 & 交互</span>
+      <small>RAG / Agent / Prompt / CoT</small>
+    </button>
+
+    <button class="category-chip" data-category="training">
+      <span>训练 & 微调</span>
+      <small>Pretrain / SFT / RLHF / LoRA</small>
+    </button>
+
+    <button class="category-chip" data-category="inference">
+      <span>推理 & 部署 & 加速</span>
+      <small>量化 / KV Cache / vLLM</small>
+    </button>
+
+    <button class="category-chip" data-category="rag">
+      <span>RAG & 向量检索</span>
+      <small>Embedding / Chunk / Retriever</small>
+    </button>
+
+    <button class="category-chip" data-category="multimodal">
+      <span>多模态 & 图像/音频/视频</span>
+      <small>Diffusion / TTS / ASR</small>
+    </button>
+
+    <button class="category-chip" data-category="framework">
+      <span>框架 & 生态工具</span>
+      <small>PyTorch / HF / LangChain</small>
+    </button>
+
+    <button class="category-chip" data-category="safety">
+      <span>安全 & 对齐 & 评测</span>
+      <small>Alignment / Red Teaming</small>
+    </button>
+
+    <button class="category-chip" data-category="product">
+      <span>AI 产品 & 应用形态</span>
+      <small>Copilot / AI Search / Workflow</small>
+    </button>
+
+    <button class="category-chip" data-category="modelsuite">
+      <span>代表性模型家族</span>
+      <small>GPT / LLaMA / Qwen / Yi</small>
+    </button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot core"></span> core</div>
+    <div class="legend-item"><span class="legend-dot model"></span> model</div>
+    <div class="legend-item"><span class="legend-dot tool"></span> tool</div>
+    <div class="legend-item"><span class="legend-dot concept"></span> concept</div>
+    <div class="legend-item"><span class="legend-dot method"></span> method</div>
+    <div class="legend-item"><span class="legend-dot practice"></span> practice</div>
+  </div>
+
+  <div class="graph-controls">
+    <label class="graph-toggle">
+      <input id="graph-toggle-labels" type="checkbox" checked />
+      显示标签
+    </label>
+    <label class="graph-toggle">
+      <input id="graph-toggle-categories" type="checkbox" checked />
+      显示分类节点
+    </label>
+    <label class="graph-toggle">
+      <input id="graph-toggle-cat-edges" type="checkbox" checked />
+      显示分类连线
+    </label>
+  </div>
+</aside>
+
+<section class="main graph-main">
+  <div class="main-header">
+    <div class="main-header-left">
+      <h2 class="main-heading">
+        图谱视图
+        <span class="count-pill">节点：<span id="graph-node-count">-</span> · 连线：<span id="graph-edge-count">-</span></span>
+      </h2>
+      <p class="main-sub">拖拽平移 · 滚轮缩放 · 点击节点打开详情（弹窗）</p>
+    </div>
+    <div class="main-header-actions">
+      <button class="contrib-btn secondary" id="graph-reset-btn" type="button">重置视图</button>
+    </div>
+  </div>
+
+  <div
+    id="graph-container"
+    class="graph-container"
+    data-graph-url="{{ '/graph.json' | relative_url }}"
+  >
+    <canvas id="graph-canvas" class="graph-canvas"></canvas>
+    <div id="graph-tooltip" class="graph-tooltip" aria-hidden="true"></div>
+    <div id="graph-loading" class="graph-loading">加载图谱中...</div>
+  </div>
+</section>
